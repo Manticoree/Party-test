@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_information"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/sivTitleImage"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/sivOwnerPhoto"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="@dimen/marginStandard"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sivTitleImage"
+        app:shapeAppearanceOverlay="@style/circleImageView" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtvTitleParty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/marginStandard"
+        app:layout_constraintLeft_toRightOf="@id/sivOwnerPhoto"
+        app:layout_constraintTop_toBottomOf="@id/sivTitleImage" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtvInvite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/marginStandard"
+        android:text="@string/invite"
+        app:layout_constraintLeft_toRightOf="@id/sivOwnerPhoto"
+        app:layout_constraintTop_toBottomOf="@id/mtvTitleParty" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtvOwnerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/marginStandard"
+        app:layout_constraintLeft_toRightOf="@id/mtvInvite"
+        app:layout_constraintTop_toBottomOf="@id/mtvTitleParty" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtvWhoCome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/marginStandard"
+        android:text="@string/who_come"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mtvOwnerName" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvGuestList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/marginStandard"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintTop_toBottomOf="@id/mtvWhoCome" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

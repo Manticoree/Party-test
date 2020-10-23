@@ -1,0 +1,16 @@
+{
+  "imageTitleUrl": "",
+  "partyName": "",
+  "partyOwnerName": "",
+  "partyOwnerPhotoUrl": "",
+  "guestList": [
+    {
+      "guestPhotoUrl": "",
+      "guestName": ""
+    },
+    {
+      "guestPhotoUrl": "",
+      "guestName": ""
+    }
+  ]
+}
