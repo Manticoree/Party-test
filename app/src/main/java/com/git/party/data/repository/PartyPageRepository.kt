@@ -19,13 +19,14 @@ class PartyPageRepository {
     }
 
     fun getDataFromJson(): ItemPartyPage {
+
         val builderPage = GsonBuilder()
         val gson: Gson = builderPage.create()
         return gson.fromJson(reader(), ItemPartyPage::class.java)
     }
 
     private fun reader(): String? {
-        var jsonPartyPage: String
+        val jsonPartyPage: String
         return try {
             val inputPage: InputStream = context.assets.open("parties.json")
             val size: Int = inputPage.available()
@@ -39,6 +40,5 @@ class PartyPageRepository {
             ""
         }
     }
-
 
 }

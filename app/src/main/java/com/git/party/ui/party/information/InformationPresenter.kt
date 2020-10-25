@@ -7,6 +7,7 @@ class InformationPresenter(private val view: InformationContract.View) :
 
     private var partyPageRepository: PartyPageRepository = PartyPageRepository()
 
+
     override fun onShowTitleImage() {
         view.showTitleImage(
             partyPageRepository.getDataFromJson().imageTitleUrl,

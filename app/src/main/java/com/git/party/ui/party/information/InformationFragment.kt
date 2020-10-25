@@ -29,6 +29,9 @@ class InformationFragment : InformationContract.View, BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter = InformationPresenter(this)
+        presenter.onShowTitleImage()
+        presenter.onShowImageNameOwner()
+        presenter.onShowGuestList()
     }
 
     override fun showTitleImage(titleImage: String, title: String) {

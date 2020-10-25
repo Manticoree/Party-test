@@ -1,5 +1,6 @@
 package com.git.party.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +25,12 @@ class GuestAdapter(private val listGuest: List<ItemGuest>) :
 
 
     override fun onBindViewHolder(holder: GuestViewHolder, position: Int) {
-        holder.bind()
+
+        listGuest.forEach {
+            holder.bind(it)
+            Log.i("list guest: ", it.guestName)
+        }
+
     }
 
     inner class GuestViewHolder(
@@ -32,13 +38,13 @@ class GuestAdapter(private val listGuest: List<ItemGuest>) :
     ) : RecyclerView.ViewHolder(
         itemView
     ) {
-        fun bind() {
-            listGuest.forEach {
-                Glide.with(itemView)
-                    .load(it.guestPhotoUrl)
-                    .into(itemView.sivGuestPhoto)
-                itemView.mtvGuestName.text = it.guestName
-            }
+        fun bind(itemGuest: ItemGuest) {
+            //   listGuest.forEach {
+            Glide.with(itemView)
+                .load(itemGuest.guestPhotoUrl)
+                .into(itemView.sivGuestPhoto)
+            itemView.mtvGuestName.text = itemGuest.guestName
+            // }
         }
     }
 }
