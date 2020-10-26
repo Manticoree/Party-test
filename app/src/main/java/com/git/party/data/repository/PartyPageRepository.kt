@@ -13,16 +13,18 @@ class PartyPageRepository {
 
     @Inject
     lateinit var context: Context
+    private val builderPage = GsonBuilder()
+    lateinit var itemPartyPage: ItemPartyPage
 
     init {
         BaseApplication.applicationComponent.inject(this)
+        getDataFromJson()
     }
 
-    fun getDataFromJson(): ItemPartyPage {
-
-        val builderPage = GsonBuilder()
+    private fun getDataFromJson(): ItemPartyPage {
         val gson: Gson = builderPage.create()
-        return gson.fromJson(reader(), ItemPartyPage::class.java)
+        itemPartyPage = gson.fromJson(reader(), ItemPartyPage::class.java)
+        return itemPartyPage
     }
 
     private fun reader(): String? {

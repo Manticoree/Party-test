@@ -7,23 +7,22 @@ class InformationPresenter(private val view: InformationContract.View) :
 
     private var partyPageRepository: PartyPageRepository = PartyPageRepository()
 
-
     override fun onShowTitleImage() {
         view.showTitleImage(
-            partyPageRepository.getDataFromJson().imageTitleUrl,
-            partyPageRepository.getDataFromJson().partyName
+            partyPageRepository.itemPartyPage.imageTitleUrl,
+            partyPageRepository.itemPartyPage.partyName
         )
     }
 
     override fun onShowImageNameOwner() {
         view.showImageNameOwner(
-            partyPageRepository.getDataFromJson().partyOwnerPhotoUrl,
-            partyPageRepository.getDataFromJson().partyOwnerName
+            partyPageRepository.itemPartyPage.partyOwnerPhotoUrl,
+            partyPageRepository.itemPartyPage.partyOwnerName
         )
     }
 
     override fun onShowGuestList() {
-        view.showGuestList(partyPageRepository.getDataFromJson().guestList)
+        view.showGuestList(partyPageRepository.itemPartyPage.guestList)
     }
 
 }

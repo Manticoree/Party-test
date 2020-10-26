@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Party</string>
-    <string name="invite">Пригласил(а)</string>
+    <string name="invite">Пригласил(а):</string>
     <string name="who_come">С вами придут</string>
 </resources>

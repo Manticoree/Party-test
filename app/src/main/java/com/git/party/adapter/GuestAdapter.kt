@@ -1,6 +1,5 @@
 package com.git.party.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,14 +22,8 @@ class GuestAdapter(private val listGuest: List<ItemGuest>) :
 
     override fun getItemCount(): Int = listGuest.size
 
-
     override fun onBindViewHolder(holder: GuestViewHolder, position: Int) {
-
-        listGuest.forEach {
-            holder.bind(it)
-            Log.i("list guest: ", it.guestName)
-        }
-
+        holder.bind(listGuest[position])
     }
 
     inner class GuestViewHolder(
@@ -39,12 +32,11 @@ class GuestAdapter(private val listGuest: List<ItemGuest>) :
         itemView
     ) {
         fun bind(itemGuest: ItemGuest) {
-            //   listGuest.forEach {
             Glide.with(itemView)
                 .load(itemGuest.guestPhotoUrl)
+                .circleCrop()
                 .into(itemView.sivGuestPhoto)
             itemView.mtvGuestName.text = itemGuest.guestName
-            // }
         }
     }
 }
