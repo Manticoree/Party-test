@@ -1,8 +1,8 @@
 package com.git.party.data.repository
 
 import android.content.Context
-import android.util.Log
 import com.git.party.base.BaseApplication
+import com.git.party.data.entity.ItemGuest
 import com.git.party.data.entity.ItemPartyPage
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -20,12 +20,20 @@ class PartyPageRepository {
         BaseApplication.applicationComponent.inject(this)
     }
 
-    fun getDataFromJson(): ItemPartyPage {
-        val gson: Gson = builderPage.create()
-        return gson.fromJson(reader(), ItemPartyPage::class.java)
+    companion object {
+        const val noData = "Нет данных"
     }
 
-    private fun reader(): String? {
+    fun getDataFromJson(): ItemPartyPage {
+        val gson: Gson = builderPage.create()
+        return if (reader() != noData) {
+            gson.fromJson(reader(), ItemPartyPage::class.java)
+        } else {
+            errorDataFromJson()
+        }
+    }
+
+    private fun reader(): String {
         val jsonPartyPage: String
         return try {
             val inputPage: InputStream = context.assets.open("parties.json")
@@ -36,8 +44,21 @@ class PartyPageRepository {
             jsonPartyPage = String(buffer)
             jsonPartyPage
         } catch (e: IOException) {
-            Log.e("get data error: ", e.localizedMessage).toString()
+            noData
         }
+    }
+
+    private fun errorDataFromJson(): ItemPartyPage {
+        val itemGuest = ItemGuest(noData, "")
+        val listItemGuest: MutableList<ItemGuest> = mutableListOf()
+        listItemGuest.add(itemGuest)
+        return ItemPartyPage(
+            "",
+            noData,
+            noData,
+            "",
+            listItemGuest
+        )
     }
 
 }

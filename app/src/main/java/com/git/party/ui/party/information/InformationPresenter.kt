@@ -1,6 +1,5 @@
 package com.git.party.ui.party.information
 
-import android.util.Log
 import com.git.party.data.entity.ItemPartyPage
 import com.git.party.data.repository.PartyPageRepository
 import kotlinx.coroutines.*
@@ -14,7 +13,6 @@ class InformationPresenter(
     init {
         launch(Dispatchers.IO) {
             val itemPartyPage = partyPageRepository.getDataFromJson()
-            Log.i("itemPartyPage: ", itemPartyPage.partyOwnerName + " " + itemPartyPage.partyName)
             withContext(Dispatchers.Main) {
                 onShowGuestList(itemPartyPage)
                 onShowImageNameOwner(itemPartyPage)
