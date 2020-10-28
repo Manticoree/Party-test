@@ -1,6 +1,7 @@
 package com.git.party.data.repository
 
 import android.content.Context
+import android.util.Log
 import com.git.party.base.BaseApplication
 import com.git.party.data.entity.ItemPartyPage
 import com.google.gson.Gson
@@ -14,17 +15,14 @@ class PartyPageRepository {
     @Inject
     lateinit var context: Context
     private val builderPage = GsonBuilder()
-    lateinit var itemPartyPage: ItemPartyPage
 
     init {
         BaseApplication.applicationComponent.inject(this)
-        getDataFromJson()
     }
 
-    private fun getDataFromJson(): ItemPartyPage {
+    fun getDataFromJson(): ItemPartyPage {
         val gson: Gson = builderPage.create()
-        itemPartyPage = gson.fromJson(reader(), ItemPartyPage::class.java)
-        return itemPartyPage
+        return gson.fromJson(reader(), ItemPartyPage::class.java)
     }
 
     private fun reader(): String? {
@@ -37,9 +35,8 @@ class PartyPageRepository {
             inputPage.close()
             jsonPartyPage = String(buffer)
             jsonPartyPage
-        } catch (ex: IOException) {
-            ex.printStackTrace()
-            ""
+        } catch (e: IOException) {
+            Log.e("get data error: ", e.localizedMessage).toString()
         }
     }
 

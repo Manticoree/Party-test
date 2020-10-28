@@ -39,4 +39,5 @@ class GuestAdapter(private val listGuest: List<ItemGuest>) :
             itemView.mtvGuestName.text = itemGuest.guestName
         }
     }
+
 }

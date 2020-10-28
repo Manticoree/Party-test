@@ -1,28 +1,38 @@
 package com.git.party.ui.party.information
 
+import android.util.Log
+import com.git.party.data.entity.ItemPartyPage
 import com.git.party.data.repository.PartyPageRepository
+import kotlinx.coroutines.*
 
-class InformationPresenter(private val view: InformationContract.View) :
-    InformationContract.Presenter {
+class InformationPresenter(
+    private val view: InformationContract.View,
+    partyPageRepository: PartyPageRepository = PartyPageRepository()
+) :
+    InformationContract.Presenter, CoroutineScope by MainScope() {
 
-    private var partyPageRepository: PartyPageRepository = PartyPageRepository()
-
-    override fun onShowTitleImage() {
-        view.showTitleImage(
-            partyPageRepository.itemPartyPage.imageTitleUrl,
-            partyPageRepository.itemPartyPage.partyName
-        )
+    init {
+        launch(Dispatchers.IO) {
+            val itemPartyPage = partyPageRepository.getDataFromJson()
+            Log.i("itemPartyPage: ", itemPartyPage.partyOwnerName + " " + itemPartyPage.partyName)
+            withContext(Dispatchers.Main) {
+                onShowGuestList(itemPartyPage)
+                onShowImageNameOwner(itemPartyPage)
+                onShowTitleImage(itemPartyPage)
+            }
+        }
     }
 
-    override fun onShowImageNameOwner() {
-        view.showImageNameOwner(
-            partyPageRepository.itemPartyPage.partyOwnerPhotoUrl,
-            partyPageRepository.itemPartyPage.partyOwnerName
-        )
+    override fun onShowTitleImage(itemPartyPage: ItemPartyPage) {
+        view.showTitleImage(itemPartyPage.imageTitleUrl, itemPartyPage.partyName)
     }
 
-    override fun onShowGuestList() {
-        view.showGuestList(partyPageRepository.itemPartyPage.guestList)
+    override fun onShowImageNameOwner(itemPartyPage: ItemPartyPage) {
+        view.showImageNameOwner(itemPartyPage.partyOwnerPhotoUrl, itemPartyPage.partyOwnerName)
+    }
+
+    override fun onShowGuestList(itemPartyPage: ItemPartyPage) {
+        view.showGuestList(itemPartyPage.guestList)
     }
 
 }

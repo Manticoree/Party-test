@@ -3,6 +3,7 @@ package com.git.party.ui.party.information
 import android.content.Context
 import android.widget.ImageView
 import com.git.party.data.entity.ItemGuest
+import com.git.party.data.entity.ItemPartyPage
 import com.google.android.material.imageview.ShapeableImageView
 
 interface InformationContract {
@@ -16,8 +17,9 @@ interface InformationContract {
     }
 
     interface Presenter {
-        fun onShowTitleImage()
-        fun onShowImageNameOwner()
-        fun onShowGuestList()
+        fun onShowTitleImage(itemPartyPage: ItemPartyPage)
+        fun onShowImageNameOwner(itemPartyPage: ItemPartyPage)
+        fun onShowGuestList(itemPartyPage: ItemPartyPage)
     }
+
 }
